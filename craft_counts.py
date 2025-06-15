@@ -7,6 +7,9 @@ class Material:
     
     def __str__(self):
         return self.name+": "+str(self.cost)
+    
+    def __repr__(self):
+        return self.name+": "+str(self.cost)
 
 class RecipeChain:
     def __init__(self):
@@ -24,19 +27,26 @@ class RecipeChain:
         self.targets[target] += num
 
     def calculate_total(self):
-        
+        proc_queue = list(self.targets)
+        # TODO: Finish this program.
+        return proc_queue
 
 def test1():
     circuit_mat = {"Plastic_Board":1, "Thin_Red_A_Wire":4, "SMD_Cap":4, "Coil":4, "MV_Circuit":2, "RAM_Chip": 4}
     dummy1 = Material("HV_Circuit2", 1, circuit_mat)
-    circuit_mat = {"Plastic_Board":1, "Thin_Red_A_Wire":4, "SMD_Cap":4, "SMD_Res":4,"SMD_Tstor":4, "CPU_Chip":1}
+    circuit_mat = {"Plastic_Board":1, "Thin_Red_A_Wire":4, "SMD_Cap":4, "SMD_Res":4,"SMD_Transistor":4, "CPU_Chip":1}
     dummy2 = Material("MV_Circuit", 1, circuit_mat)
     
     print(dummy1)
     print(dummy2)
     
-    HV_circuit
-
+    HV_Circuit = RecipeChain()
+    HV_Circuit.add_target(dummy2)
+    HV_Circuit.register_res(dummy1)
+    print(HV_Circuit.calculate_total())
+    HV_Circuit.register_res(dummy2)
+    print(HV_Circuit.calculate_total())
+    
 if __name__ == "__main__":
     test1()
     
